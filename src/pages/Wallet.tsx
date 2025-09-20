@@ -59,7 +59,7 @@ interface Transaction {
 const lifeAPI = {
   getSmartMoneyData: async () => {
     await new Promise(resolve => setTimeout(resolve, 800));
-    
+
     return {
       cards: [
         {
@@ -123,7 +123,7 @@ const lifeAPI = {
 
   getConciergeCards: async (): Promise<ConciergeCard[]> => {
     await new Promise(resolve => setTimeout(resolve, 600));
-    
+
     return [
       {
         id: 'cc1',
@@ -155,7 +155,7 @@ const lifeAPI = {
 
   getTransactions: async (cardId: string): Promise<Transaction[]> => {
     await new Promise(resolve => setTimeout(resolve, 600));
-    
+
     const transactions = [
       {
         id: '1',
@@ -277,7 +277,7 @@ export default function Wallet() {
 
   const handleFXConversion = async () => {
     if (!selectedFXRate || !fxAmount) return;
-    
+
     try {
       const result = await lifeAPI.convertFX('ZAR', selectedFXRate.currency, parseFloat(fxAmount));
       if (result.success) {
@@ -373,17 +373,21 @@ export default function Wallet() {
             </p>
           </div>
           <div style={{
-            background: '#C41E3A',
-            borderRadius: '50%',
             width: '40px',
             height: '40px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
           }}>
-            <span className="material-icons-outlined" style={{ color: '#fff', fontSize: '20px' }}>
-              assistant
-            </span>
+            <img
+              src="/absa-logo-red-bg.svg"
+              alt="ABSA Logo"
+              style={{
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%'
+              }}
+            />
           </div>
         </div>
 
@@ -733,7 +737,7 @@ export default function Wallet() {
                   style={{
                     minWidth: '280px',
                     height: '180px',
-                    background: card.type === 'fx' 
+                    background: card.type === 'fx'
                       ? 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)'
                       : 'linear-gradient(135deg, #C41E3A 0%, #E91E63 100%)',
                     borderRadius: '16px',
@@ -850,10 +854,10 @@ export default function Wallet() {
                             fontSize: '20px',
                             color: transaction.type === 'credit' ? '#fff' : '#999'
                           }}>
-                            {transaction.category === 'travel' ? 'flight' : 
-                             transaction.category === 'subscription' ? 'subscriptions' :
-                             transaction.category === 'workspace' ? 'business_center' :
-                             transaction.type === 'credit' ? 'arrow_downward' : 'arrow_upward'}
+                            {transaction.category === 'travel' ? 'flight' :
+                              transaction.category === 'subscription' ? 'subscriptions' :
+                                transaction.category === 'workspace' ? 'business_center' :
+                                  transaction.type === 'credit' ? 'arrow_downward' : 'arrow_upward'}
                           </span>
                         </div>
                         <div>

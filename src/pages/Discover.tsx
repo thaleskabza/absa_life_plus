@@ -48,7 +48,7 @@ interface UserProfile {
 const discoverAPI = {
   getUserProfile: async (): Promise<UserProfile> => {
     await new Promise(resolve => setTimeout(resolve, 600));
-    
+
     return {
       age: 28,
       income: 'variable',
@@ -63,7 +63,7 @@ const discoverAPI = {
 
   getPersonalizedRecommendations: async (profile: UserProfile): Promise<Product[]> => {
     await new Promise(resolve => setTimeout(resolve, 800));
-    
+
     return [
       {
         id: 'global_nomad_account',
@@ -228,7 +228,7 @@ const discoverAPI = {
 
   getLifestyleInsights: async (profile: UserProfile): Promise<LifestyleInsight[]> => {
     await new Promise(resolve => setTimeout(resolve, 400));
-    
+
     return [
       {
         category: 'Travel Optimization',
@@ -288,7 +288,7 @@ export default function Discover() {
         discoverAPI.getPersonalizedRecommendations(profile),
         discoverAPI.getLifestyleInsights(profile)
       ]);
-      
+
       setUserProfile(profile);
       setRecommendations(products);
       setLifestyleInsights(insights);
@@ -316,7 +316,7 @@ export default function Discover() {
     }
   };
 
-  const filteredProducts = recommendations.filter(product => 
+  const filteredProducts = recommendations.filter(product =>
     selectedCategory === 'all' || product.category === selectedCategory
   );
 
@@ -410,17 +410,21 @@ export default function Discover() {
             </p>
           </div>
           <div style={{
-            background: '#C41E3A',
-            borderRadius: '50%',
             width: '40px',
             height: '40px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
           }}>
-            <span className="material-icons-outlined" style={{ color: '#fff', fontSize: '20px' }}>
-              explore
-            </span>
+            <img
+              src="/absa-logo-red-bg.svg"
+              alt="ABSA Logo"
+              style={{
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%'
+              }}
+            />
           </div>
         </div>
 
@@ -569,7 +573,7 @@ export default function Discover() {
           }}>
             {selectedCategory === 'all' ? 'Recommended for You' : `${categories.find(c => c.id === selectedCategory)?.label} Products`}
           </h3>
-          
+
           <div style={{ display: 'grid', gap: '16px' }}>
             {filteredProducts.map((product) => (
               <div
@@ -711,9 +715,9 @@ export default function Discover() {
                         margin: 0,
                         color: '#fff'
                       }}>
-                        {product.pricing.type === 'free' ? 'Free' : 
-                         product.pricing.type === 'percentage' ? `${product.pricing.amount}% p.a.` :
-                         `R${product.pricing.amount}/${product.pricing.type}`}
+                        {product.pricing.type === 'free' ? 'Free' :
+                          product.pricing.type === 'percentage' ? `${product.pricing.amount}% p.a.` :
+                            `R${product.pricing.amount}/${product.pricing.type}`}
                       </p>
                       <p style={{
                         fontSize: '12px',

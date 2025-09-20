@@ -176,13 +176,13 @@ const QUESTION_BANK: QuizQuestion[] = [
 const quizAPI = {
   getUserProgress: async (): Promise<UserProgress> => {
     await new Promise(resolve => setTimeout(resolve, 500));
-    
+
     // Load from localStorage or return default
     const stored = localStorage.getItem('quiz_progress');
     if (stored) {
       return JSON.parse(stored);
     }
-    
+
     return {
       totalQuestions: 0,
       correctAnswers: 0,
@@ -202,19 +202,19 @@ const quizAPI = {
 
   getQuestionsByLevel: async (level: string, category?: string): Promise<QuizQuestion[]> => {
     await new Promise(resolve => setTimeout(resolve, 400));
-    
+
     let filtered = QUESTION_BANK.filter(q => q.difficulty === level);
     if (category && category !== 'all') {
       filtered = filtered.filter(q => q.category === category);
     }
-    
+
     // Randomize order
     return filtered.sort(() => Math.random() - 0.5).slice(0, 5);
   },
 
   getPersonalizedLearningPaths: async (progress: UserProgress): Promise<LearningPath[]> => {
     await new Promise(resolve => setTimeout(resolve, 600));
-    
+
     return [
       {
         id: 'path1',
@@ -328,7 +328,7 @@ const quizAPI = {
 
   getAchievements: async (progress: UserProgress): Promise<Achievement[]> => {
     await new Promise(resolve => setTimeout(resolve, 300));
-    
+
     return [
       {
         id: 'ach1',
@@ -398,7 +398,7 @@ export default function Quiz() {
         quizAPI.getPersonalizedLearningPaths(progress),
         quizAPI.getAchievements(progress)
       ]);
-      
+
       setUserProgress(progress);
       setLearningPaths(paths);
       setAchievements(achs);
@@ -411,7 +411,7 @@ export default function Quiz() {
 
   const startQuiz = async () => {
     if (!userProgress) return;
-    
+
     try {
       const questions = await quizAPI.getQuestionsByLevel(selectedDifficulty, selectedCategory);
       setCurrentQuiz(questions);
@@ -432,10 +432,10 @@ export default function Quiz() {
 
   const submitAnswer = async () => {
     if (selectedAnswer === null || !userProgress) return;
-    
+
     const currentQuestion = currentQuiz[currentQuestionIndex];
     const isCorrect = selectedAnswer === currentQuestion.correctAnswer;
-    
+
     // Update progress
     const newProgress = {
       ...userProgress,
@@ -450,7 +450,7 @@ export default function Quiz() {
       },
       lastActivity: new Date().toISOString()
     };
-    
+
     setUserProgress(newProgress);
     await quizAPI.saveUserProgress(newProgress);
     setShowExplanation(true);
@@ -547,17 +547,21 @@ export default function Quiz() {
             </p>
           </div>
           <div style={{
-            background: '#C41E3A',
-            borderRadius: '50%',
             width: '40px',
             height: '40px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
           }}>
-            <span className="material-icons-outlined" style={{ color: '#fff', fontSize: '20px' }}>
-              quiz
-            </span>
+            <img
+              src="/absa-logo-red-bg.svg"
+              alt="ABSA Logo"
+              style={{
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%'
+              }}
+            />
           </div>
         </div>
 
@@ -861,11 +865,11 @@ export default function Quiz() {
                           ? index === currentQuiz[currentQuestionIndex].correctAnswer
                             ? '#4CAF50'
                             : selectedAnswer === index
-                            ? '#f44336'
-                            : '#333'
+                              ? '#f44336'
+                              : '#333'
                           : selectedAnswer === index
-                          ? '#C41E3A'
-                          : '#333',
+                            ? '#C41E3A'
+                            : '#333',
                         color: '#fff',
                         fontSize: '16px',
                         textAlign: 'left',
@@ -886,11 +890,11 @@ export default function Quiz() {
                             ? index === currentQuiz[currentQuestionIndex].correctAnswer
                               ? '#fff'
                               : selectedAnswer === index
-                              ? '#fff'
-                              : 'transparent'
+                                ? '#fff'
+                                : 'transparent'
                             : selectedAnswer === index
-                            ? '#fff'
-                            : 'transparent',
+                              ? '#fff'
+                              : 'transparent',
                           border: '2px solid #666',
                           display: 'flex',
                           alignItems: 'center',
@@ -1038,7 +1042,7 @@ export default function Quiz() {
               color: '#ccc',
               marginBottom: '24px'
             }}>
-              You scored {userProgress ? Math.round((userProgress.correctAnswers / userProgress.totalQuestions) * 100) : 0}% 
+              You scored {userProgress ? Math.round((userProgress.correctAnswers / userProgress.totalQuestions) * 100) : 0}%
               on this {selectedDifficulty} level quiz
             </p>
 
@@ -1092,7 +1096,7 @@ export default function Quiz() {
             }}>
               Personalized Learning Paths
             </h3>
-            
+
             <div style={{ display: 'grid', gap: '16px' }}>
               {learningPaths.map((path) => (
                 <div
@@ -1192,13 +1196,13 @@ export default function Quiz() {
                       >
                         <span className="material-icons-outlined" style={{
                           fontSize: '16px',
-                          color: module.type === 'mentor_session' ? '#C41E3A' : 
-                                module.type === 'quiz' ? '#4CAF50' :
-                                module.type === 'video' ? '#2196F3' : '#FF9800'
+                          color: module.type === 'mentor_session' ? '#C41E3A' :
+                            module.type === 'quiz' ? '#4CAF50' :
+                              module.type === 'video' ? '#2196F3' : '#FF9800'
                         }}>
                           {module.type === 'mentor_session' ? 'school' :
-                           module.type === 'quiz' ? 'quiz' :
-                           module.type === 'video' ? 'play_circle' : 'article'}
+                            module.type === 'quiz' ? 'quiz' :
+                              module.type === 'video' ? 'play_circle' : 'article'}
                         </span>
                         <div style={{ flex: 1 }}>
                           <p style={{
@@ -1345,7 +1349,7 @@ export default function Quiz() {
                 }}>
                   Performance by Category
                 </h4>
-                
+
                 <div style={{ display: 'grid', gap: '12px' }}>
                   {Object.entries(userProgress.categoryScores).map(([category, scores]) => {
                     const percentage = Math.round((scores.correct / scores.total) * 100);
@@ -1405,7 +1409,7 @@ export default function Quiz() {
               }}>
                 Achievements
               </h4>
-              
+
               <div style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',

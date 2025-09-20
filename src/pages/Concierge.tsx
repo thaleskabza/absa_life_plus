@@ -51,7 +51,7 @@ interface UserContext {
 const conciergeAPI = {
   getUserContext: async (): Promise<UserContext> => {
     await new Promise(resolve => setTimeout(resolve, 500));
-    
+
     return {
       name: "Kabelo",
       recentTransactions: [
@@ -80,12 +80,12 @@ const conciergeAPI = {
 
   sendMessage: async (message: string, context: UserContext): Promise<ChatMessage> => {
     await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000));
-    
+
     const messageId = `msg_${Date.now()}`;
-    
+
     // Simple intent detection for realistic responses
     const lowerMessage = message.toLowerCase();
-    
+
     if (lowerMessage.includes('fx') || lowerMessage.includes('exchange') || lowerMessage.includes('convert')) {
       return {
         id: messageId,
@@ -222,7 +222,7 @@ I'm also noticing consistent professional tool investments - Adobe, WeWork - whi
 
   getConversationHistory: async (): Promise<ChatMessage[]> => {
     await new Promise(resolve => setTimeout(resolve, 400));
-    
+
     return [
       {
         id: 'welcome',
@@ -263,7 +263,7 @@ export default function Concierge() {
         conciergeAPI.getUserContext(),
         conciergeAPI.getConversationHistory()
       ]);
-      
+
       setUserContext(context);
       setMessages(history);
     } catch (error) {
@@ -317,7 +317,7 @@ export default function Concierge() {
       content: `I've initiated "${action.label}" for you. This action would normally integrate with your banking services. You should see the changes reflected in your Smart Money Hub shortly.`,
       timestamp: new Date()
     };
-    
+
     setMessages(prev => [...prev, actionMessage]);
   };
 
@@ -361,9 +361,9 @@ export default function Concierge() {
   }
 
   return (
-    <div style={{ 
-      minHeight: '100vh', 
-      background: '#1a1a1a', 
+    <div style={{
+      minHeight: '100vh',
+      background: '#1a1a1a',
       color: '#fff',
       display: 'flex',
       flexDirection: 'column'
@@ -380,20 +380,21 @@ export default function Concierge() {
           gap: '12px'
         }}>
           <div style={{
-            width: '48px',
-            height: '48px',
-            borderRadius: '50%',
-            background: 'linear-gradient(135deg, #C41E3A 0%, #E91E63 100%)',
+            width: '40px',
+            height: '40px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
           }}>
-            <span className="material-icons-outlined" style={{
-              fontSize: '24px',
-              color: '#fff'
-            }}>
-              assistant
-            </span>
+            <img
+              src="/absa-logo-red-bg.svg"
+              alt="ABSA Logo"
+              style={{
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%'
+              }}
+            />
           </div>
           <div>
             <h1 style={{
@@ -454,7 +455,7 @@ export default function Concierge() {
                 width: '40px',
                 height: '40px',
                 borderRadius: '50%',
-                background: message.type === 'user' 
+                background: message.type === 'user'
                   ? 'linear-gradient(135deg, #333 0%, #666 100%)'
                   : 'linear-gradient(135deg, #C41E3A 0%, #E91E63 100%)',
                 display: 'flex',
@@ -490,9 +491,9 @@ export default function Concierge() {
                   fontSize: '12px',
                   color: '#666'
                 }}>
-                  {message.timestamp.toLocaleTimeString('en-ZA', { 
-                    hour: '2-digit', 
-                    minute: '2-digit' 
+                  {message.timestamp.toLocaleTimeString('en-ZA', {
+                    hour: '2-digit',
+                    minute: '2-digit'
                   })}
                 </p>
 
@@ -510,10 +511,9 @@ export default function Concierge() {
                           background: '#333',
                           borderRadius: '8px',
                           padding: '12px',
-                          borderLeft: `3px solid ${
-                            insight.impact === 'positive' ? '#4CAF50' : 
-                            insight.impact === 'attention' ? '#FF9800' : '#666'
-                          }`
+                          borderLeft: `3px solid ${insight.impact === 'positive' ? '#4CAF50' :
+                              insight.impact === 'attention' ? '#FF9800' : '#666'
+                            }`
                         }}
                       >
                         <div style={{

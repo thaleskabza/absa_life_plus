@@ -246,7 +246,7 @@ const REWARDS_CATALOG: Reward[] = [
 const rewardsAPI = {
   getUserRewardsProfile: async (): Promise<UserRewardsProfile> => {
     await new Promise(resolve => setTimeout(resolve, 600));
-    
+
     return {
       lifePlusPoints: 3240,
       tierLevel: 'Professional',
@@ -268,11 +268,11 @@ const rewardsAPI = {
 
   getPersonalizedRewards: async (profile: UserRewardsProfile): Promise<Reward[]> => {
     await new Promise(resolve => setTimeout(resolve, 800));
-    
+
     // Personalize based on user profile
     const personalizedRewards = REWARDS_CATALOG.map(reward => {
       let personalizedReason = '';
-      
+
       if (reward.category === 'travel' && profile.travelFrequency === 'frequent') {
         personalizedReason = 'Perfect for your frequent travel pattern';
       } else if (reward.category === 'workspace' && profile.spendingCategories.professional_services > 1000) {
@@ -282,18 +282,18 @@ const rewardsAPI = {
       } else if (reward.category === 'professional' && profile.tierLevel !== 'Explorer') {
         personalizedReason = 'Recommended for your professional tier';
       }
-      
+
       return {
         ...reward,
         personalizedReason: personalizedReason || reward.personalizedReason
       };
     });
-    
+
     // Sort by relevance and user preferences
     return personalizedRewards.sort((a, b) => {
       const aRelevant = profile.preferredCategories.includes(a.category) ? 1 : 0;
       const bRelevant = profile.preferredCategories.includes(b.category) ? 1 : 0;
-      
+
       if (aRelevant !== bRelevant) return bRelevant - aRelevant;
       if (a.featured !== b.featured) return a.featured ? -1 : 1;
       return a.cost - b.cost;
@@ -302,7 +302,7 @@ const rewardsAPI = {
 
   getRedemptionHistory: async (): Promise<RedemptionHistory[]> => {
     await new Promise(resolve => setTimeout(resolve, 400));
-    
+
     return [
       {
         id: 'rd1',
@@ -329,7 +329,7 @@ const rewardsAPI = {
 
   redeemReward: async (rewardId: string, pointsCost: number) => {
     await new Promise(resolve => setTimeout(resolve, 1200));
-    
+
     return {
       success: true,
       confirmationCode: `ABL${Date.now().toString(36).toUpperCase()}`,
@@ -340,7 +340,7 @@ const rewardsAPI = {
 
   getPartnerBusinesses: async (): Promise<PartnerBusiness[]> => {
     await new Promise(resolve => setTimeout(resolve, 500));
-    
+
     return [
       {
         id: 'p1',
@@ -407,7 +407,7 @@ export default function Rewards() {
         rewardsAPI.getRedemptionHistory(),
         rewardsAPI.getPartnerBusinesses()
       ]);
-      
+
       setUserProfile(profile);
       setRewards(rewardsList);
       setRedemptionHistory(history);
@@ -421,16 +421,16 @@ export default function Rewards() {
 
   const handleRewardRedemption = async () => {
     if (!selectedReward || !userProfile) return;
-    
+
     if (userProfile.lifePlusPoints < selectedReward.cost) {
       alert('Insufficient Life+ points for this reward.');
       return;
     }
-    
+
     try {
       setRedeeming(true);
       const result = await rewardsAPI.redeemReward(selectedReward.id, selectedReward.cost);
-      
+
       if (result.success) {
         setRedemptionSuccess(result);
         setUserProfile(prev => prev ? {
@@ -447,7 +447,7 @@ export default function Rewards() {
     }
   };
 
-  const filteredRewards = rewards.filter(reward => 
+  const filteredRewards = rewards.filter(reward =>
     selectedCategory === 'all' || reward.category === selectedCategory
   );
 
@@ -547,17 +547,21 @@ export default function Rewards() {
             </p>
           </div>
           <div style={{
-            background: '#C41E3A',
-            borderRadius: '50%',
             width: '40px',
             height: '40px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
           }}>
-            <span className="material-icons-outlined" style={{ color: '#fff', fontSize: '20px' }}>
-              star
-            </span>
+            <img
+              src="/absa-logo-red-bg.svg"
+              alt="ABSA Logo"
+              style={{
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%'
+              }}
+            />
           </div>
         </div>
 
@@ -605,7 +609,7 @@ export default function Rewards() {
                 </span>
               </div>
             </div>
-            
+
             <div style={{
               display: 'flex',
               justifyContent: 'space-between',
@@ -702,7 +706,7 @@ export default function Rewards() {
               }}>
                 Featured for You
               </h3>
-              
+
               <div style={{
                 display: 'flex',
                 gap: '16px',
@@ -758,7 +762,7 @@ export default function Rewards() {
                     }}>
                       {reward.title}
                     </h4>
-                    
+
                     <p style={{
                       fontSize: '14px',
                       color: '#ccc',
@@ -862,7 +866,7 @@ export default function Rewards() {
               }}>
                 All Rewards
               </h3>
-              
+
               <div style={{ display: 'grid', gap: '16px' }}>
                 {filteredRewards.filter(r => !r.featured).map((reward) => (
                   <div
@@ -892,7 +896,7 @@ export default function Rewards() {
                           {getCategoryIcon(reward.category)}
                         </span>
                       </div>
-                      
+
                       <div style={{ flex: 1 }}>
                         <div style={{
                           display: 'flex',
@@ -997,7 +1001,7 @@ export default function Rewards() {
             }}>
               Redemption History
             </h3>
-            
+
             <div style={{ display: 'grid', gap: '12px' }}>
               {redemptionHistory.map((redemption) => (
                 <div
@@ -1032,8 +1036,8 @@ export default function Rewards() {
                       </p>
                     </div>
                     <div style={{
-                      background: redemption.status === 'active' ? '#4CAF50' : 
-                                redemption.status === 'used' ? '#666' : '#f44336',
+                      background: redemption.status === 'active' ? '#4CAF50' :
+                        redemption.status === 'used' ? '#666' : '#f44336',
                       borderRadius: '12px',
                       padding: '4px 8px',
                       fontSize: '12px',
@@ -1044,7 +1048,7 @@ export default function Rewards() {
                       {redemption.status}
                     </div>
                   </div>
-                  
+
                   <div style={{
                     display: 'flex',
                     justifyContent: 'space-between',
@@ -1055,7 +1059,7 @@ export default function Rewards() {
                     <span>{redemption.pointsUsed.toLocaleString()} points used</span>
                     <span>{new Date(redemption.redeemedAt).toLocaleDateString('en-ZA')}</span>
                   </div>
-                  
+
                   {redemption.confirmationCode && (
                     <div style={{
                       marginTop: '8px',
@@ -1083,7 +1087,7 @@ export default function Rewards() {
             }}>
               Our Partners
             </h3>
-            
+
             <div style={{ display: 'grid', gap: '16px' }}>
               {partnerBusinesses.map((partner) => (
                 <div
@@ -1118,7 +1122,7 @@ export default function Rewards() {
                         {partner.name.charAt(0)}
                       </span>
                     </div>
-                    
+
                     <div style={{ flex: 1 }}>
                       <h4 style={{
                         fontSize: '18px',

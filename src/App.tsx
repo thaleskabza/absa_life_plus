@@ -1,7 +1,7 @@
 // src/App.tsx - Updated with all navigation routes
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import RetailBank from '../src/pages/RetailBank';
-import Discover from '../src/pages/Discover';
+import RetailBank from './pages/RetailBank';
+import Discover from './pages/Discover';
 
 // Import BottomNav for placeholder pages
 import BottomNav from './ui/BottomNav';
@@ -136,37 +136,6 @@ export default function App() {
           
           * {
             box-sizing: border-box;
-          }
-          
-          * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-          }
-
-          body {
-            margin: 0;
-            padding: 0;
-            font-family: system-ui, -apple-system, sans-serif;
-            background: #1a1a1a;
-            color: #fff;
-            overflow-x: hidden; /* Prevent horizontal scroll */
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-          }
-
-          /* Mobile-first responsive container */
-          .container {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 0 var(--space-4);
-            width: 100%;
-          }
-
-          /* Ensure mobile compatibility */
-          @media (max-width: 480px) {
-            .container {
-              padding: 0 16px;
-            }
           }
         `}</style>
         
