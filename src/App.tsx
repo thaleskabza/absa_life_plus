@@ -1,32 +1,13 @@
-// src/App.tsx - Updated with all navigation routes
+// src/App.tsx - Fixed routing to ensure "/" goes to RetailBank
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import RetailBank from './pages/RetailBank';
 import Discover from './pages/Discover';
+import Mentors from './pages/Mentors';  // Import the full Mentors component
 
 // Import BottomNav for placeholder pages
 import BottomNav from './ui/BottomNav';
 
-// Placeholder components for new routes
-const Mentors = () => (
-  <div style={{ minHeight: '100vh', background: '#1a1a1a', color: '#fff', padding: '40px', textAlign: 'center' }}>
-    <h1>Mentors</h1>
-    <p>Connect with financial mentors and advisors</p>
-    <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0 }}>
-      <BottomNav />
-    </div>
-  </div>
-);
-
-const DiscoverPage = () => (
-  <div style={{ minHeight: '100vh', background: '#1a1a1a', color: '#fff', padding: '40px', textAlign: 'center' }}>
-    <h1>Discover</h1>
-    <p>Explore new financial products and opportunities</p>
-    <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0 }}>
-      <BottomNav />
-    </div>
-  </div>
-);
-
+// Placeholder components for remaining routes
 const Wallet = () => (
   <div style={{ minHeight: '100vh', background: '#1a1a1a', color: '#fff', padding: '40px', textAlign: 'center' }}>
     <h1>Wallet</h1>
@@ -137,16 +118,60 @@ export default function App() {
           * {
             box-sizing: border-box;
           }
+
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
         `}</style>
         
         <Routes>
-          {/* All Navigation Routes */}
-          <Route path="/" element={<RetailBank />} />
-          <Route path="/Concierge" element={<Discover />} />
-          <Route path="/mentors" element={<Mentors />} />
-          <Route path="/discover" element={<DiscoverPage />} />
-          <Route path="/rewards" element={<Rewards />} />
-          <Route path="/wallet" element={<Wallet />} />
+          {/* Fixed Navigation Routes - ROOT route first for priority */}
+          <Route path="/" element={<RetailBank />} />           {/* HOME - RetailBank */}
+          <Route path="/mentors" element={<Mentors />} />       {/* Full Mentors component */}
+          <Route path="/Concierge" element={<Discover />} />    {/* Life+ button */}
+          <Route path="/wallet" element={<Wallet />} />         {/* Wallet placeholder */}
+          <Route path="/rewards" element={<Rewards />} />       {/* Rewards placeholder */}
+          
+          {/* Debug Route to see what's happening */}
+          <Route path="*" element={
+            <div style={{ 
+              minHeight: '100vh', 
+              background: '#1a1a1a', 
+              color: '#fff', 
+              padding: '40px', 
+              textAlign: 'center' 
+            }}>
+              <h1>Debug: 404 - Route Not Found</h1>
+              <p><strong>Current URL:</strong> {window.location.href}</p>
+              <p><strong>Pathname:</strong> {window.location.pathname}</p>
+              <div style={{ background: '#333', padding: '20px', borderRadius: '8px', margin: '20px 0' }}>
+                <h3>Available routes:</h3>
+                <ul style={{ textAlign: 'left', display: 'inline-block' }}>
+                  <li><a href="/" style={{ color: '#C41E3A' }}>/ → RetailBank (Home)</a></li>
+                  <li><a href="/mentors" style={{ color: '#C41E3A' }}>/mentors → Mentors</a></li>
+                  <li><a href="/Concierge" style={{ color: '#C41E3A' }}>/Concierge → Discover (Life+)</a></li>
+                  <li><a href="/wallet" style={{ color: '#C41E3A' }}>/wallet → Wallet</a></li>
+                  <li><a href="/rewards" style={{ color: '#C41E3A' }}>/rewards → Rewards</a></li>
+                </ul>
+              </div>
+              <button 
+                onClick={() => window.location.href = '/'}
+                style={{
+                  background: '#C41E3A',
+                  color: '#fff',
+                  border: 'none',
+                  padding: '12px 24px',
+                  borderRadius: '8px',
+                  fontSize: '16px',
+                  cursor: 'pointer'
+                }}
+              >
+                Go to Home (RetailBank)
+              </button>
+              <BottomNav />
+            </div>
+          } />
         </Routes>
       </div>
     </Router>

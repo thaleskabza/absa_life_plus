@@ -1,5 +1,5 @@
 // src/components/PWAInstallButton.tsx
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import Button from '../ui/Button';
 
 interface BeforeInstallPromptEvent extends Event {

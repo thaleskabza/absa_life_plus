@@ -76,7 +76,7 @@ const mentorsAPI = {
 
   getUserInterests: async (): Promise<UserInterests> => {
     await new Promise(resolve => setTimeout(resolve, 400));
-    
+
     return {
       businessStage: 'startup',
       industries: ['fintech', 'AI', 'digital_services'],
@@ -88,7 +88,7 @@ const mentorsAPI = {
 
   getMentors: async (interests: UserInterests): Promise<Mentor[]> => {
     await new Promise(resolve => setTimeout(resolve, 800));
-    
+
     const { maleImages, femaleImages } = mentorsAPI.randomizeProfileImages();
     let maleIndex = 0;
     let femaleIndex = 0;
@@ -262,21 +262,21 @@ const mentorsAPI = {
 
   getAvailableSlots: async (mentorId: string): Promise<BookingSlot[]> => {
     await new Promise(resolve => setTimeout(resolve, 600));
-    
+
     const slots: BookingSlot[] = [];
     const startDate = new Date();
     startDate.setDate(startDate.getDate() + 1); // Start from tomorrow
-    
+
     for (let i = 0; i < 14; i++) {
       const date = new Date(startDate);
       date.setDate(date.getDate() + i);
-      
+
       // Generate 3-5 random slots per day
       const slotsPerDay = Math.floor(Math.random() * 3) + 3;
       for (let j = 0; j < slotsPerDay; j++) {
         const hour = 9 + Math.floor(Math.random() * 8); // 9 AM to 5 PM
         const minute = Math.random() > 0.5 ? 0 : 30;
-        
+
         slots.push({
           id: `slot_${mentorId}_${i}_${j}`,
           mentorId,
@@ -289,13 +289,13 @@ const mentorsAPI = {
         });
       }
     }
-    
+
     return slots.filter(slot => slot.available).slice(0, 20);
   },
 
   bookMentorSession: async (slotId: string, mentorId: string) => {
     await new Promise(resolve => setTimeout(resolve, 1000));
-    
+
     return {
       success: true,
       bookingId: `booking_${Date.now()}`,
@@ -327,7 +327,7 @@ export default function Mentors() {
       setLoading(true);
       const interests = await mentorsAPI.getUserInterests();
       const mentorData = await mentorsAPI.getMentors(interests);
-      
+
       setUserInterests(interests);
       setMentors(mentorData);
     } catch (error) {
@@ -340,7 +340,7 @@ export default function Mentors() {
   const handleMentorSelect = async (mentor: Mentor) => {
     setSelectedMentor(mentor);
     setBookingLoading(true);
-    
+
     try {
       const slots = await mentorsAPI.getAvailableSlots(mentor.id);
       setAvailableSlots(slots);
@@ -353,11 +353,11 @@ export default function Mentors() {
 
   const handleBookingConfirm = async () => {
     if (!selectedSlot || !selectedMentor) return;
-    
+
     try {
       setBookingLoading(true);
       const result = await mentorsAPI.bookMentorSession(selectedSlot.id, selectedMentor.id);
-      
+
       if (result.success) {
         setBookingConfirmation(result);
         setShowBookingConfirmation(true);
@@ -460,17 +460,21 @@ export default function Mentors() {
             </p>
           </div>
           <div style={{
-            background: '#C41E3A',
-            borderRadius: '50%',
             width: '40px',
             height: '40px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
           }}>
-            <span className="material-icons-outlined" style={{ color: '#fff', fontSize: '20px' }}>
-              school
-            </span>
+            <img
+              src="/absa-logo-red-bg.svg"
+              alt="ABSA Logo"
+              style={{
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%'
+              }}
+            />
           </div>
         </div>
 
@@ -630,7 +634,7 @@ export default function Mentors() {
                       </span>
                     </div>
                   </div>
-                  
+
                   <div style={{ flex: 1 }}>
                     <div style={{
                       display: 'flex',
@@ -664,7 +668,7 @@ export default function Mentors() {
                           {mentor.company}
                         </p>
                       </div>
-                      
+
                       <div style={{ textAlign: 'right' }}>
                         <div style={{
                           background: mentor.lifeMatch >= 90 ? '#4CAF50' : mentor.lifeMatch >= 80 ? '#FF9800' : '#666',
@@ -884,7 +888,7 @@ export default function Mentors() {
                 }}>
                   Available Time Slots
                 </h4>
-                
+
                 <div style={{
                   display: 'grid',
                   gap: '8px',

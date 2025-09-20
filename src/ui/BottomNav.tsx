@@ -1,4 +1,4 @@
-// src/ui/BottomNav.tsx - Fixed with React Router
+// src/ui/BottomNav.tsx - Fixed with all navigation routes
 import { Link, useLocation } from "react-router-dom";
 
 export default function BottomNav() {
@@ -13,23 +13,24 @@ export default function BottomNav() {
       isActive: currentPath === "/"
     },
     {
-      to: "/wallet",
-      icon: "credit_card", 
-      label: "Wallet",
-      isActive: currentPath === "/wallet"
+      to: "/mentors",  // Add mentors navigation
+      icon: "school", 
+      label: "Mentors",
+      isActive: currentPath === "/mentors"
     },
-    {
-      to: "/rewards",
-      icon: "star",
-      label: "Rewards", 
-      isActive: currentPath === "/rewards"
-    },
+
     {
       to: "/Concierge",
       icon: "add_circle",
       label: "Life+",
       isActive: currentPath === "/Concierge",
       isSpecial: true
+    },
+    {
+      to: "/wallet",
+      icon: "credit_card", 
+      label: "Wallet",
+      isActive: currentPath === "/wallet"
     }
   ];
 
