@@ -1,0 +1,10 @@
+/* index.css - Minimal base styles that won't conflict with theme.css */
+
+/* Essential resets only */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Let your theme.css handle everything else */

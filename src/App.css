@@ -1,0 +1,15 @@
+/* App.css - Clean styles for your Absa Life+ app */
+
+/* Ensure root container doesn't interfere with mobile layout */
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+/* Absa brand assets */
+.absa-logo {
+  height: 40px;
+  width: auto;
+}
+
+/* Remove any other styles that might conflict with your theme */
