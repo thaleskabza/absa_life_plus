@@ -337,7 +337,7 @@ export default function RetailBank() {
                 marginBottom: '4px',
                 transition: 'all 0.3s ease'
               }}>
-                {showBalance ? 'R 24.50' : 'R ••••'}
+                {showBalance ? 'R 25748.50' : 'R ••••'}
               </div>
               <div style={{
                 fontSize: '14px',
@@ -403,7 +403,7 @@ export default function RetailBank() {
                 fontWeight: '700',
                 marginBottom: '4px'
               }}>
-                {showBalance ? 'R 1.70' : 'R ••••'}
+                {showBalance ? 'R 176700.70' : 'R ••••'}
               </div>
               <div style={{
                 fontSize: '14px',

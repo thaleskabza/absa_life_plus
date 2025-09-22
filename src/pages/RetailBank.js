@@ -228,7 +228,7 @@ export default function RetailBank() {
                                                 fontWeight: '700',
                                                 marginBottom: '4px',
                                                 transition: 'all 0.3s ease'
-                                            }, children: showBalance ? 'R 24.50' : 'R ••••' }), _jsx("div", { style: {
+                                            }, children: showBalance ? 'R 25748.50' : 'R ••••' }), _jsx("div", { style: {
                                                 fontSize: '14px',
                                                 opacity: 0.8
                                             }, children: "Available balance" })] }) }), _jsx("div", { style: {
@@ -266,7 +266,7 @@ export default function RetailBank() {
                                                 fontSize: '32px',
                                                 fontWeight: '700',
                                                 marginBottom: '4px'
-                                            }, children: showBalance ? 'R 1.70' : 'R ••••' }), _jsx("div", { style: {
+                                            }, children: showBalance ? 'R 176700.70' : 'R ••••' }), _jsx("div", { style: {
                                                 fontSize: '14px',
                                                 opacity: 0.8
                                             }, children: "Current Balance" })] }) })] }), _jsxs("div", { style: {
