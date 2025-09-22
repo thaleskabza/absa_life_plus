@@ -31,6 +31,18 @@ export default function BottomNav() {
       icon: "credit_card", 
       label: "Wallet",
       isActive: currentPath === "/wallet"
+    },
+    {
+      to: "/quiz",
+      icon: "quiz", 
+      label: "Quiz",
+      isActive: currentPath === "/quiz" 
+    },
+    {
+      to: "/rewards",
+      icon: "card_giftcard", 
+      label: "Rewards",
+      isActive: currentPath === "/rewards"
     }
   ];
 
