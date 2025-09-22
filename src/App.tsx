@@ -2,7 +2,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import RetailBank from './pages/RetailBank';
 import Discover from './pages/Discover';
-import Mentors from './pages/Mentors';  // Import the full Mentors component
+import Mentors from './pages/Mentors'; 
+import Quiz from './pages/Quiz';
 
 // Import BottomNav for placeholder pages
 import BottomNav from './ui/BottomNav';
@@ -132,6 +133,8 @@ export default function App() {
           <Route path="/Concierge" element={<Discover />} />    {/* Life+ button */}
           <Route path="/wallet" element={<Wallet />} />         {/* Wallet placeholder */}
           <Route path="/rewards" element={<Rewards />} />       {/* Rewards placeholder */}
+          <Route path="/offers" element={<Discover />} />       {/* Banking Offers and Benefits */}
+          <Route path="/quiz" element={<Quiz />} />             {/* Financial Quiz */}
           
           {/* Debug Route to see what's happening */}
           <Route path="*" element={

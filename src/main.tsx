@@ -6,16 +6,18 @@ import Concierge from "./pages/Concierge";
 import Discover from "./pages/Discover";
 import Quiz from "./pages/Quiz";
 import Rewards from "../src/pages/Rewards";
-import Mentors from "../src/pages//Mentors";
-import Wallet from "../src/pages//Wallet";
+import Mentors from "../src/pages/Mentors";
+import Wallet from "../src/pages/Wallet";
+import RetailBank from "./pages/RetailBank";
 
 const router = createBrowserRouter([
-  { path: "/", element: <Discover/> },
+  { path: "/", element: <RetailBank/> },
   { path: "/quiz", element: <Quiz/> },
   { path: "/concierge", element: <Concierge/> },
   { path: "/rewards", element: <Rewards/> },
   { path: "/mentors", element: <Mentors/> },
   { path: "/wallet", element: <Wallet/> },
+  { path: "/offers", element: <Discover/> },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
