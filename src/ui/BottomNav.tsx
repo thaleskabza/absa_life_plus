@@ -1,4 +1,4 @@
-// src/ui/BottomNav.tsx - Responsive navigation for all screen sizes
+// src/ui/BottomNav.tsx - Better responsive navigation with proper sizing
 import { Link, useLocation } from "react-router-dom";
 
 export default function BottomNav() {
@@ -35,7 +35,7 @@ export default function BottomNav() {
       to: "/quiz",
       icon: "quiz", 
       label: "Quiz",
-      isActive: currentPath === "/quiz" 
+      isActive: currentPath === "/quiz"
     },
     {
       to: "/rewards",
@@ -47,7 +47,7 @@ export default function BottomNav() {
       to: "/offers",
       icon: "local_offer", 
       label: "Offers",
-      isActive: currentPath === "/offers" // Fixed: was "/d"
+      isActive: currentPath === "/offers"
     }
   ];
 
@@ -62,28 +62,53 @@ export default function BottomNav() {
       padding: '8px 0 calc(8px + env(safe-area-inset-bottom))',
       zIndex: 1000,
       boxShadow: '0 -2px 10px rgba(0, 0, 0, 0.3)',
-      overflowX: 'auto', // Allow horizontal scroll if needed
-      scrollbarWidth: 'none', // Hide scrollbar on Firefox
-      msOverflowStyle: 'none', // Hide scrollbar on IE/Edge
+      overflowX: 'auto',
+      overflowY: 'hidden',
+      scrollbarWidth: 'none',
+      msOverflowStyle: 'none',
+      WebkitOverflowScrolling: 'touch' // Smooth scrolling on iOS
     }}>
-      {/* Hide scrollbar on Webkit browsers */}
-      <style>
-        {`
+      <style dangerouslySetInnerHTML={{
+        __html: `
           nav::-webkit-scrollbar {
             display: none;
           }
-        `}
-      </style>
+          
+          /* Fade effect for scroll indication */
+          nav::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 20px;
+            background: linear-gradient(to right, transparent, #1a1a1a);
+            pointer-events: none;
+            z-index: 1;
+          }
+          
+          nav::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 20px;
+            background: linear-gradient(to left, transparent, #1a1a1a);
+            pointer-events: none;
+            z-index: 1;
+          }
+        `
+      }} />
       
       <div style={{
         display: 'flex',
-        justifyContent: 'space-between', // Changed from space-around
         alignItems: 'center',
-        minWidth: '100%', // Ensure full width usage
-        padding: '0 8px', // Reduced padding
-        boxSizing: 'border-box'
+        minWidth: 'max-content',
+        padding: '0 8px',
+        gap: '4px'
       }}>
-        {navItems.map((item) => (
+        {navItems.map((item, index) => (
           <Link
             key={item.to}
             to={item.to}
@@ -93,24 +118,23 @@ export default function BottomNav() {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              gap: '2px', // Reduced gap
-              padding: '6px 2px', // Reduced padding
+              gap: '3px',
+              padding: '6px 8px',
               cursor: 'pointer',
               transition: 'all 0.2s ease',
-              borderRadius: '8px', // Reduced border radius
-              flex: '1', // Make each item take equal space
-              maxWidth: '70px', // Maximum width per item
-              minWidth: '45px', // Minimum width per item
+              borderRadius: '10px',
+              minWidth: '52px', // Proper minimum touch target
               position: 'relative',
               textDecoration: 'none',
-              color: 'inherit'
+              color: 'inherit',
+              flexShrink: 0
             }}
           >
             {/* Special styling for Life+ button */}
             {item.isSpecial ? (
               <div style={{
-                width: '40px', // Reduced size
-                height: '40px', // Reduced size
+                width: '42px',
+                height: '42px',
                 background: item.isActive 
                   ? '#C41E3A' 
                   : 'linear-gradient(135deg, #C41E3A 0%, #E91E63 100%)',
@@ -122,7 +146,7 @@ export default function BottomNav() {
                 transform: item.isActive ? 'scale(1.05)' : 'scale(1)'
               }}>
                 <span className="material-icons-outlined" style={{
-                  fontSize: '20px', // Reduced icon size
+                  fontSize: '22px',
                   color: '#fff'
                 }}>
                   {item.icon}
@@ -132,7 +156,7 @@ export default function BottomNav() {
               <span 
                 className="material-icons-outlined" 
                 style={{
-                  fontSize: '20px', // Reduced icon size
+                  fontSize: '22px',
                   color: item.isActive ? '#C41E3A' : '#999',
                   transition: 'color 0.2s ease'
                 }}
@@ -142,16 +166,13 @@ export default function BottomNav() {
             )}
             
             <span style={{
-              fontSize: '10px', // Reduced font size
+              fontSize: '10px',
               fontWeight: item.isActive ? '600' : '400',
               color: item.isActive ? '#C41E3A' : '#999',
               transition: 'color 0.2s ease',
               textAlign: 'center',
               lineHeight: '1.2',
-              whiteSpace: 'nowrap',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-              maxWidth: '100%'
+              whiteSpace: 'nowrap'
             }}>
               {item.label}
             </span>
@@ -160,11 +181,11 @@ export default function BottomNav() {
             {item.isActive && !item.isSpecial && (
               <div style={{
                 position: 'absolute',
-                top: '1px',
+                top: '2px',
                 left: '50%',
                 transform: 'translateX(-50%)',
-                width: '3px',
-                height: '3px',
+                width: '4px',
+                height: '4px',
                 background: '#C41E3A',
                 borderRadius: '50%'
               }} />
