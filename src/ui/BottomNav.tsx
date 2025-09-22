@@ -1,4 +1,4 @@
-// src/ui/BottomNav.tsx - Fixed with all navigation routes
+// src/ui/BottomNav.tsx - Responsive navigation for all screen sizes
 import { Link, useLocation } from "react-router-dom";
 
 export default function BottomNav() {
@@ -13,12 +13,11 @@ export default function BottomNav() {
       isActive: currentPath === "/"
     },
     {
-      to: "/mentors",  // Add mentors navigation
+      to: "/mentors",
       icon: "school", 
       label: "Mentors",
       isActive: currentPath === "/mentors"
     },
-
     {
       to: "/Concierge",
       icon: "add_circle",
@@ -43,6 +42,12 @@ export default function BottomNav() {
       icon: "card_giftcard", 
       label: "Rewards",
       isActive: currentPath === "/rewards"
+    },
+    {
+      to: "/offers",
+      icon: "local_offer", 
+      label: "Offers",
+      isActive: currentPath === "/offers" // Fixed: was "/d"
     }
   ];
 
@@ -56,15 +61,27 @@ export default function BottomNav() {
       borderTop: '1px solid #333',
       padding: '8px 0 calc(8px + env(safe-area-inset-bottom))',
       zIndex: 1000,
-      boxShadow: '0 -2px 10px rgba(0, 0, 0, 0.3)'
+      boxShadow: '0 -2px 10px rgba(0, 0, 0, 0.3)',
+      overflowX: 'auto', // Allow horizontal scroll if needed
+      scrollbarWidth: 'none', // Hide scrollbar on Firefox
+      msOverflowStyle: 'none', // Hide scrollbar on IE/Edge
     }}>
+      {/* Hide scrollbar on Webkit browsers */}
+      <style>
+        {`
+          nav::-webkit-scrollbar {
+            display: none;
+          }
+        `}
+      </style>
+      
       <div style={{
         display: 'flex',
-        justifyContent: 'space-around',
+        justifyContent: 'space-between', // Changed from space-around
         alignItems: 'center',
-        maxWidth: '500px',
-        margin: '0 auto',
-        padding: '0 16px'
+        minWidth: '100%', // Ensure full width usage
+        padding: '0 8px', // Reduced padding
+        boxSizing: 'border-box'
       }}>
         {navItems.map((item) => (
           <Link
@@ -76,12 +93,14 @@ export default function BottomNav() {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              gap: '4px',
-              padding: '8px',
+              gap: '2px', // Reduced gap
+              padding: '6px 2px', // Reduced padding
               cursor: 'pointer',
               transition: 'all 0.2s ease',
-              borderRadius: '12px',
-              minWidth: '60px',
+              borderRadius: '8px', // Reduced border radius
+              flex: '1', // Make each item take equal space
+              maxWidth: '70px', // Maximum width per item
+              minWidth: '45px', // Minimum width per item
               position: 'relative',
               textDecoration: 'none',
               color: 'inherit'
@@ -90,8 +109,8 @@ export default function BottomNav() {
             {/* Special styling for Life+ button */}
             {item.isSpecial ? (
               <div style={{
-                width: '48px',
-                height: '48px',
+                width: '40px', // Reduced size
+                height: '40px', // Reduced size
                 background: item.isActive 
                   ? '#C41E3A' 
                   : 'linear-gradient(135deg, #C41E3A 0%, #E91E63 100%)',
@@ -103,7 +122,7 @@ export default function BottomNav() {
                 transform: item.isActive ? 'scale(1.05)' : 'scale(1)'
               }}>
                 <span className="material-icons-outlined" style={{
-                  fontSize: '24px',
+                  fontSize: '20px', // Reduced icon size
                   color: '#fff'
                 }}>
                   {item.icon}
@@ -113,7 +132,7 @@ export default function BottomNav() {
               <span 
                 className="material-icons-outlined" 
                 style={{
-                  fontSize: '24px',
+                  fontSize: '20px', // Reduced icon size
                   color: item.isActive ? '#C41E3A' : '#999',
                   transition: 'color 0.2s ease'
                 }}
@@ -123,10 +142,16 @@ export default function BottomNav() {
             )}
             
             <span style={{
-              fontSize: '12px',
+              fontSize: '10px', // Reduced font size
               fontWeight: item.isActive ? '600' : '400',
               color: item.isActive ? '#C41E3A' : '#999',
-              transition: 'color 0.2s ease'
+              transition: 'color 0.2s ease',
+              textAlign: 'center',
+              lineHeight: '1.2',
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              maxWidth: '100%'
             }}>
               {item.label}
             </span>
@@ -135,11 +160,11 @@ export default function BottomNav() {
             {item.isActive && !item.isSpecial && (
               <div style={{
                 position: 'absolute',
-                top: '2px',
+                top: '1px',
                 left: '50%',
                 transform: 'translateX(-50%)',
-                width: '4px',
-                height: '4px',
+                width: '3px',
+                height: '3px',
                 background: '#C41E3A',
                 borderRadius: '50%'
               }} />
