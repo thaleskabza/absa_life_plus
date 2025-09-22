@@ -1,4 +1,4 @@
-// src/ui/BottomNav.tsx - Fixed with all navigation routes
+// src/ui/BottomNav.tsx - Better responsive navigation with proper sizing
 import { Link, useLocation } from "react-router-dom";
 
 export default function BottomNav() {
@@ -13,12 +13,11 @@ export default function BottomNav() {
       isActive: currentPath === "/"
     },
     {
-      to: "/mentors",  // Add mentors navigation
+      to: "/mentors",
       icon: "school", 
       label: "Mentors",
       isActive: currentPath === "/mentors"
     },
-
     {
       to: "/Concierge",
       icon: "add_circle",
@@ -36,13 +35,19 @@ export default function BottomNav() {
       to: "/quiz",
       icon: "quiz", 
       label: "Quiz",
-      isActive: currentPath === "/quiz" 
+      isActive: currentPath === "/quiz"
     },
     {
       to: "/rewards",
       icon: "card_giftcard", 
       label: "Rewards",
       isActive: currentPath === "/rewards"
+    },
+    {
+      to: "/offers",
+      icon: "local_offer", 
+      label: "Offers",
+      isActive: currentPath === "/offers"
     }
   ];
 
@@ -56,17 +61,54 @@ export default function BottomNav() {
       borderTop: '1px solid #333',
       padding: '8px 0 calc(8px + env(safe-area-inset-bottom))',
       zIndex: 1000,
-      boxShadow: '0 -2px 10px rgba(0, 0, 0, 0.3)'
+      boxShadow: '0 -2px 10px rgba(0, 0, 0, 0.3)',
+      overflowX: 'auto',
+      overflowY: 'hidden',
+      scrollbarWidth: 'none',
+      msOverflowStyle: 'none',
+      WebkitOverflowScrolling: 'touch' // Smooth scrolling on iOS
     }}>
+      <style dangerouslySetInnerHTML={{
+        __html: `
+          nav::-webkit-scrollbar {
+            display: none;
+          }
+          
+          /* Fade effect for scroll indication */
+          nav::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 20px;
+            background: linear-gradient(to right, transparent, #1a1a1a);
+            pointer-events: none;
+            z-index: 1;
+          }
+          
+          nav::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 20px;
+            background: linear-gradient(to left, transparent, #1a1a1a);
+            pointer-events: none;
+            z-index: 1;
+          }
+        `
+      }} />
+      
       <div style={{
         display: 'flex',
-        justifyContent: 'space-around',
         alignItems: 'center',
-        maxWidth: '500px',
-        margin: '0 auto',
-        padding: '0 16px'
+        minWidth: 'max-content',
+        padding: '0 8px',
+        gap: '4px'
       }}>
-        {navItems.map((item) => (
+        {navItems.map((item, index) => (
           <Link
             key={item.to}
             to={item.to}
@@ -76,22 +118,23 @@ export default function BottomNav() {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              gap: '4px',
-              padding: '8px',
+              gap: '3px',
+              padding: '6px 8px',
               cursor: 'pointer',
               transition: 'all 0.2s ease',
-              borderRadius: '12px',
-              minWidth: '60px',
+              borderRadius: '10px',
+              minWidth: '52px', // Proper minimum touch target
               position: 'relative',
               textDecoration: 'none',
-              color: 'inherit'
+              color: 'inherit',
+              flexShrink: 0
             }}
           >
             {/* Special styling for Life+ button */}
             {item.isSpecial ? (
               <div style={{
-                width: '48px',
-                height: '48px',
+                width: '42px',
+                height: '42px',
                 background: item.isActive 
                   ? '#C41E3A' 
                   : 'linear-gradient(135deg, #C41E3A 0%, #E91E63 100%)',
@@ -103,7 +146,7 @@ export default function BottomNav() {
                 transform: item.isActive ? 'scale(1.05)' : 'scale(1)'
               }}>
                 <span className="material-icons-outlined" style={{
-                  fontSize: '24px',
+                  fontSize: '22px',
                   color: '#fff'
                 }}>
                   {item.icon}
@@ -113,7 +156,7 @@ export default function BottomNav() {
               <span 
                 className="material-icons-outlined" 
                 style={{
-                  fontSize: '24px',
+                  fontSize: '22px',
                   color: item.isActive ? '#C41E3A' : '#999',
                   transition: 'color 0.2s ease'
                 }}
@@ -123,10 +166,13 @@ export default function BottomNav() {
             )}
             
             <span style={{
-              fontSize: '12px',
+              fontSize: '10px',
               fontWeight: item.isActive ? '600' : '400',
               color: item.isActive ? '#C41E3A' : '#999',
-              transition: 'color 0.2s ease'
+              transition: 'color 0.2s ease',
+              textAlign: 'center',
+              lineHeight: '1.2',
+              whiteSpace: 'nowrap'
             }}>
               {item.label}
             </span>
