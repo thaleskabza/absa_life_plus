@@ -1,6 +1,7 @@
 // src/pages/Wallet.tsx - Absa Life+ Smart Money Hub
 import { useState, useEffect } from 'react';
 import BottomNav from "../ui/BottomNav";
+import absaLogo from '../assets/absa-logo-red-bg.svg'; // ABSA logo with red background
 
 // Enhanced interfaces for Life+ ecosystem
 interface Card {
@@ -380,7 +381,7 @@ export default function Wallet() {
             justifyContent: 'center'
           }}>
             <img
-              src="/absa-logo-red-bg.svg"
+              src={absaLogo}
               alt="ABSA Logo"
               style={{
                 width: '40px',
