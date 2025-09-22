@@ -2,6 +2,7 @@ import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-run
 // src/pages/Quiz.tsx - Financial Literacy & Learning Paths
 import { useState, useEffect } from 'react';
 import BottomNav from "../ui/BottomNav";
+import absaLogo from '../assets/absa-logo-red-bg.svg'; // ABSA logo with red background
 // Financial Literacy Question Bank (sourced from public financial education resources)
 const QUESTION_BANK = [
     {
@@ -457,7 +458,7 @@ export default function Quiz() {
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center'
-                                }, children: _jsx("img", { src: "/absa-logo-red-bg.svg", alt: "ABSA Logo", style: {
+                                }, children: _jsx("img", { src: absaLogo, alt: "ABSA Logo", style: {
                                         width: '40px',
                                         height: '40px',
                                         borderRadius: '50%'

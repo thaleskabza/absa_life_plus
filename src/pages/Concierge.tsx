@@ -1,6 +1,7 @@
 // src/pages/Concierge.tsx - AI Banking & Life Assistant
 import { useState, useEffect, useRef } from 'react';
 import BottomNav from "../ui/BottomNav";
+import absaLogo from '../assets/absa-logo-red-bg.svg';
 
 // AI Message types and interfaces
 interface ChatMessage {
@@ -387,7 +388,7 @@ export default function Concierge() {
             justifyContent: 'center'
           }}>
             <img
-              src="/absa-logo-red-bg.svg"
+              src={absaLogo}
               alt="ABSA Logo"
               style={{
                 width: '40px',

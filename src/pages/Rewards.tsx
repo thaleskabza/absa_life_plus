@@ -1,6 +1,7 @@
 // src/pages/Rewards.tsx - Curated Lifestyle & Partner Benefits
 import { useState, useEffect } from 'react';
 import BottomNav from "../ui/BottomNav";
+import absaLogo from '../assets/absa-logo-red-bg.svg'; // ABSA logo with red background
 
 // Rewards and benefits interfaces
 interface Reward {
@@ -554,7 +555,7 @@ export default function Rewards() {
             justifyContent: 'center'
           }}>
             <img
-              src="/absa-logo-red-bg.svg"
+              src={absaLogo}
               alt="ABSA Logo"
               style={{
                 width: '40px',

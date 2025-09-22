@@ -2,6 +2,7 @@ import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 // src/pages/Mentors.tsx - Professional Network & Office Hours
 import { useState, useEffect } from 'react';
 import BottomNav from "../ui/BottomNav";
+import absaLogo from '../assets/absa-logo-red-bg.svg'; // ABSA logo with red background
 // Mock free profile images (in production, you'd fetch from APIs like Unsplash, Pexels, etc.)
 const MENTOR_IMAGE_POOLS = {
     // In production, replace these with actual API calls to:
@@ -380,7 +381,7 @@ export default function Mentors() {
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center'
-                                }, children: _jsx("img", { src: "/absa-logo-red-bg.svg", alt: "ABSA Logo", style: {
+                                }, children: _jsx("img", { src: absaLogo, alt: "ABSA Logo", style: {
                                         width: '40px',
                                         height: '40px',
                                         borderRadius: '50%'

@@ -2,6 +2,7 @@ import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 // src/pages/Rewards.tsx - Curated Lifestyle & Partner Benefits
 import { useState, useEffect } from 'react';
 import BottomNav from "../ui/BottomNav";
+import absaLogo from '../assets/absa-logo-red-bg.svg'; // ABSA logo with red background
 // Realistic South African rewards based on actual market
 const REWARDS_CATALOG = [
     {
@@ -454,7 +455,7 @@ export default function Rewards() {
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center'
-                                }, children: _jsx("img", { src: "/absa-logo-red-bg.svg", alt: "ABSA Logo", style: {
+                                }, children: _jsx("img", { src: absaLogo, alt: "ABSA Logo", style: {
                                         width: '40px',
                                         height: '40px',
                                         borderRadius: '50%'

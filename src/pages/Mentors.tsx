@@ -1,7 +1,7 @@
 // src/pages/Mentors.tsx - Professional Network & Office Hours
 import { useState, useEffect } from 'react';
 import BottomNav from "../ui/BottomNav";
-
+import absaLogo from '../assets/absa-logo-red-bg.svg'; // ABSA logo with red background
 // Mentor and booking interfaces
 interface Mentor {
   id: string;
@@ -467,7 +467,7 @@ export default function Mentors() {
             justifyContent: 'center'
           }}>
             <img
-              src="/absa-logo-red-bg.svg"
+              src={absaLogo}
               alt="ABSA Logo"
               style={{
                 width: '40px',

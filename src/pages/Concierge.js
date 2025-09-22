@@ -2,6 +2,7 @@ import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 // src/pages/Concierge.tsx - AI Banking & Life Assistant
 import { useState, useEffect, useRef } from 'react';
 import BottomNav from "../ui/BottomNav";
+import absaLogo from '../assets/absa-logo-red-bg.svg';
 // Mock AI Concierge API
 const conciergeAPI = {
     getUserContext: async () => {
@@ -306,7 +307,7 @@ export default function Concierge() {
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center'
-                            }, children: _jsx("img", { src: "/absa-logo-red-bg.svg", alt: "ABSA Logo", style: {
+                            }, children: _jsx("img", { src: absaLogo, alt: "ABSA Logo", style: {
                                     width: '40px',
                                     height: '40px',
                                     borderRadius: '50%'

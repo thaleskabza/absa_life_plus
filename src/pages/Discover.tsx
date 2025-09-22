@@ -1,7 +1,7 @@
 // src/pages/Discover.tsx - Lifestyle Product Recommendations
 import { useState, useEffect } from 'react';
 import BottomNav from "../ui/BottomNav";
-
+import absaLogo from '../assets/absa-logo-red-bg.svg'; // ABSA logo with red background
 // Product and recommendation interfaces
 interface Product {
   id: string;
@@ -417,7 +417,7 @@ export default function Discover() {
             justifyContent: 'center'
           }}>
             <img
-              src="/absa-logo-red-bg.svg"
+              src={absaLogo}
               alt="ABSA Logo"
               style={{
                 width: '40px',

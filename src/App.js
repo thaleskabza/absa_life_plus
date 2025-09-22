@@ -3,7 +3,8 @@ import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import RetailBank from './pages/RetailBank';
 import Discover from './pages/Discover';
-import Mentors from './pages/Mentors'; // Import the full Mentors component
+import Mentors from './pages/Mentors';
+import Quiz from './pages/Quiz';
 // Import BottomNav for placeholder pages
 import BottomNav from './ui/BottomNav';
 // Placeholder components for remaining routes
@@ -100,7 +101,7 @@ export default function App() {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
           }
-        ` }), _jsxs(Routes, { children: [_jsx(Route, { path: "/", element: _jsx(RetailBank, {}) }), "           ", _jsx(Route, { path: "/mentors", element: _jsx(Mentors, {}) }), "       ", _jsx(Route, { path: "/Concierge", element: _jsx(Discover, {}) }), "    ", _jsx(Route, { path: "/wallet", element: _jsx(Wallet, {}) }), "         ", _jsx(Route, { path: "/rewards", element: _jsx(Rewards, {}) }), "       ", _jsx(Route, { path: "*", element: _jsxs("div", { style: {
+        ` }), _jsxs(Routes, { children: [_jsx(Route, { path: "/", element: _jsx(RetailBank, {}) }), "           ", _jsx(Route, { path: "/mentors", element: _jsx(Mentors, {}) }), "       ", _jsx(Route, { path: "/Concierge", element: _jsx(Discover, {}) }), "    ", _jsx(Route, { path: "/wallet", element: _jsx(Wallet, {}) }), "         ", _jsx(Route, { path: "/rewards", element: _jsx(Rewards, {}) }), "       ", _jsx(Route, { path: "/offers", element: _jsx(Discover, {}) }), "       ", _jsx(Route, { path: "/quiz", element: _jsx(Quiz, {}) }), "             ", _jsx(Route, { path: "*", element: _jsxs("div", { style: {
                                     minHeight: '100vh',
                                     background: '#1a1a1a',
                                     color: '#fff',

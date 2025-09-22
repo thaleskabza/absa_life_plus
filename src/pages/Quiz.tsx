@@ -1,7 +1,7 @@
 // src/pages/Quiz.tsx - Financial Literacy & Learning Paths
 import { useState, useEffect } from 'react';
 import BottomNav from "../ui/BottomNav";
-
+import absaLogo from '../assets/absa-logo-red-bg.svg'; // ABSA logo with red background
 // Quiz and learning interfaces
 interface QuizQuestion {
   id: string;
@@ -554,7 +554,7 @@ export default function Quiz() {
             justifyContent: 'center'
           }}>
             <img
-              src="/absa-logo-red-bg.svg"
+              src={absaLogo}
               alt="ABSA Logo"
               style={{
                 width: '40px',
